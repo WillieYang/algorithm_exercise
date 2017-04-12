@@ -9,8 +9,9 @@ def gcd(m, n):
 
 class Fraction:
     def __init__(self, top, bottom):
-        self.num = top
-        self.den = bottom
+        common = gcd(top, bottom)
+        self.num = top // common
+        self.den = bottom // common
 
     def __str__(self):
         return str(self.num) + "/" + str(self.den)
@@ -22,8 +23,7 @@ class Fraction:
         new_num = self.num * other_fraction.den + \
                     self.den * other_fraction.num
         new_den = self.den * other_fraction.den
-        common = gcd(new_num, new_den)
-        return Fraction(new_num // common, new_den // common)
+        return Fraction(new_num, new_den)
 
     def __eq__(self, other):
         first_num = self.num * other.den
@@ -39,7 +39,7 @@ class Fraction:
         den = self.den
         return den
 
-x = Fraction(1, 2)
+x = Fraction(2, 4)
 y = Fraction(2, 3)
 
 print(x+y)
