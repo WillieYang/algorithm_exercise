@@ -31,7 +31,19 @@ class Fraction:
 
         return first_num == second_num
 
+    def get_num(self):
+        num = self.num
+        return num
+
+    def get_den(self):
+        den = self.den
+        return den
+
 x = Fraction(1, 2)
 y = Fraction(2, 3)
+
 print(x+y)
 print(x == y)
+
+print(x.get_num())
+print(x.get_den())
