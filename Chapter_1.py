@@ -1,36 +1,37 @@
-import random
+def gcd(m, n):
+    while m % n != 0:
+        old_m = m
+        old_n = n
 
-letters_space = 'abcdefghijklmnopqrstuvwxyz '
-sentence_list = []
-sentence_shoot = 'methinks it is like a weasel'
+        m = old_n
+        n = old_m % old_n
+    return n
 
-def iteration(arg):
-    if arg == False:
-        print("This time is failed, try again")
-        string_generate()
-    else:
-        print("Mokey Sucessful")
+class Fraction:
+    def __init__(self, top, bottom):
+        self.num = top
+        self.den = bottom
 
-def compare(arg):
-    if arg == sentence_shoot:
-        return iteration(True)
-    else:
-        iteration(False)
+    def __str__(self):
+        return str(self.num) + "/" + str(self.den)
 
-def string_generate():
-    sentence_list[:] = []
-    for ch in range(27):
-        sentence_list.append(random.choice(letters_space))
-    sentence_string = ''.join(sentence_list)
-    compare(sentence_string)
+    def show(self):
+        print(self.num, "/", self.den)
 
-string_generate()
+    def __add__(self, other_fraction):
+        new_num = self.num * other_fraction.den + \
+                    self.den * other_fraction.num
+        new_den = self.den * other_fraction.den
+        common = gcd(new_num, new_den)
+        return Fraction(new_num // common, new_den // common)
 
+    def __eq__(self, other):
+        first_num = self.num * other.den
+        second_num = other.num * self.den
 
+        return first_num == second_num
 
-# first step: generate sentence_string
-# second step: compare sentence_string to the sentence_shoot
-# thrid step: if True, print the sentence_shoot
-#               else return False
-# fourh step: iterate the above steps until the sentence_shoot is printed.
-# Self Check Challenge did not finish...
+x = Fraction(1, 2)
+y = Fraction(2, 3)
+print(x+y)
+print(x == y)
