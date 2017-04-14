@@ -1,6 +1,10 @@
-List = [1, 3, 2, 5, 9, 7, 4]
-Min = 5
+List = [3, 2, 5, 9, 7, 4, 20]
+Min = 8
 for i in List:
-    if i < Min:
-        Min = i
-print('The minimum number is: %d', Min)
+    print('i is %d' % i)
+    for j in List:
+        print('j is %d' % j)
+        if j < Min:
+            Min = j
+            print('Min is %d' % Min)
+print('The minimum number is: %d' % Min)
